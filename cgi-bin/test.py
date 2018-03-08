@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/opt/python3/bin/python3
 #coding:utf-8
 import os
 print("Content-type:text/html")
