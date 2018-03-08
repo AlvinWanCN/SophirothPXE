@@ -28,10 +28,9 @@ elif user == 'alvin':
     f2.write(re.sub(r'.*%s.*'%host,'',f1Content))
     f2.close()
     respense=json.dumps(success)
-    respense=json.dumps(success)
 else:
     respense = json.dumps(unknown)
 
 print("Content-Type: application/json")
-print()
+print('\n')
 print(respense)
