@@ -32,5 +32,5 @@ else:
     respense = json.dumps(unknown)
 
 print("Content-Type: application/json")
-print('')
+print()
 print(respense)
