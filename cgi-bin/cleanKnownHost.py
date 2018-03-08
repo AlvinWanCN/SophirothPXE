@@ -1,36 +1,27 @@
 #!/usr/bin/python3
 #coding:utf-8
-import os,cgi,json,re
+import os,cgi,json
 
 data=cgi.FieldStorage()
 user=data.getvalue('user')
 host=data.getvalue('host')
-rootfile='/root/.ssh/known_hosts'
-alvinfile='/sophiroth/alvin/.ssh/known_hosts'
+
 
 success = {"success":"True","code":0}
 fail = {"success":"False","code":1}
 unknown = {"success":"False","code":2}
-
 if user == 'root':
-    f1=open(rootfile,'r')
-    f1Content=f1.read()
-    f1.close()
-    f2=open(rootfile,'w')
-    f2.write(re.sub(r'.*%s.*'%host,'',f1Content))
-    f2.close()
-    respense=json.dumps(success)
+    if os.system("sudo sed -i '/%s/d' /root/.ssh/known_hosts"%host) == 0:
+        respense=json.dumps(success)
+    else:
+        respense = json.dumps(fail)
 elif user == 'alvin':
-    f1=open(alvinfile,'r')
-    f1Content=f1.read()
-    f1.close()
-    f2=open(alvinfile,'w')
-    f2.write(re.sub(r'.*%s.*'%host,'',f1Content))
-    f2.close()
-    respense=json.dumps(success)
+    if os.system("sed -i '/%s/d' /sophiroth/alvin/.ssh/known_hosts"%host) == 0:
+        respense=json.dumps(success)
+    else:
+        respense = json.dumps(fail)
 else:
     respense = json.dumps(unknown)
-
 print("Content-Type: application/json")
 print('')
 print(respense)
