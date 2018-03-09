@@ -25,14 +25,14 @@ else:
 
 os.system('rpm -q expect &>/dev/null|| sudo yum install expect -y &>/dev/null')
 
-os.system('''/usr/bin/expect <<eof
+os.popen('''/usr/bin/expect <<eof
 spawn ssh %s
 expect {
 "yes/no"
 { send "yes\n";exp_continue }
 }
 expect eof
-eof'''%host)
+eof '''%host)
 
 print("Content-Type: application/json")
 print('')
