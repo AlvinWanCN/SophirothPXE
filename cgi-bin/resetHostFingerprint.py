@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #coding:utf-8
-import os,cgi,json
+import os,cgi,json,sys
 
 data=cgi.FieldStorage()
 user=data.getvalue('user')
@@ -22,6 +22,18 @@ elif user == 'alvin':
         respense = json.dumps(fail)
 else:
     respense = json.dumps(unknown)
+
+os.system('rpm -q expect &>/dev/null|| sudo yum install expect -y &>/dev/null')
+
+os.system('''/usr/bin/expect <<eof
+spawn ssh %s
+expect {
+"yes/no"
+{ send "yes\n";exp_continue }
+}
+expect eof
+eof'''%host)
+
 print("Content-Type: application/json")
 print('')
 print(respense)
