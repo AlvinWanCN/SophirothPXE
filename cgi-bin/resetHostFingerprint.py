@@ -6,7 +6,8 @@ data=cgi.FieldStorage()
 user=data.getvalue('user')
 host=data.getvalue('host')
 
-
+print("Content-Type: application/json")
+print('')
 success = {"success":"True","code":0}
 fail = {"success":"False","code":1}
 unknown = {"success":"False","code":2}
@@ -25,15 +26,16 @@ else:
 
 os.system('rpm -q expect &>/dev/null|| sudo yum install expect -y &>/dev/null')
 
-os.popen('''/usr/bin/expect <<eof
+os.system('''
+/usr/bin/expect <<eof
 spawn ssh %s
 expect {
 "yes/no"
 { send "yes\n";exp_continue }
 }
 expect eof
-eof '''%host)
+eof
+'''%host)
 
-print("Content-Type: application/json")
-print('')
+
 print(respense)
