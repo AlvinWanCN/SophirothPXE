@@ -32,16 +32,6 @@ os.system('rpm -q expect &>/dev/null|| sudo yum install expect -y &>/dev/null')
 #print('')
 #print(respense)
 
-a=os.system('''
-/usr/bin/expect <<eof
-spawn ssh %s
-expect {
-"yes/no"
-{ send "yes\n";exp_continue }
-}
-expect eof
-eof
-'''%host)
 
 
 print("Content-type:text/html")
