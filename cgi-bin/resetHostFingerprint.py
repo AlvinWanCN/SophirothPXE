@@ -37,7 +37,8 @@ def processData(user,host):
         respense = json.dumps(fail)
 
 processData(user,host)
-os.system('''
+def sshHost(hostname):
+    os.system('''
 /usr/bin/expect <<eof
 spawn ssh %s
 expect {
@@ -46,7 +47,8 @@ expect {
 }
 expect eof
 eof
-'''%host)
+'''%hostname)
 
-
+sshHost(host)
+sshHost(host+'.alv.pub')
 print(respense)
