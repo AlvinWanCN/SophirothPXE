@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 #coding:utf-8
 import os,cgi,json,sys
-
+print("Content-Type: application/json")
+print('')
 data=cgi.FieldStorage()
 user=data.getvalue('user')
 host=data.getvalue('host')
@@ -27,11 +28,10 @@ os.system('rpm -q expect &>/dev/null|| sudo yum install expect -y &>/dev/null')
 
 
 
-print("Content-Type: application/json")
-print('')
+
 print(respense)
 
-os.system('''
+a=os.system('''
 /usr/bin/expect <<eof
 spawn ssh %s
 expect {
