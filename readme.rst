@@ -12,7 +12,7 @@ python3
 -----------
 Install python3
 
-.. code-block::bash
+.. code-block:: bash
 
     python -c "$(curl -fsSL https://raw.githubusercontent.com/AlvinWanCN/scripts/master/python/instrallpython3.6.5.py)"
 
