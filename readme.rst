@@ -26,7 +26,7 @@ Install sophiroth pxe
     git clone https://github.com/AlvinWanCN/SophirothPXE.git
 
 
-启动服务的方式
+Startup
 `````````````````````
 
  需要用拥有sudo权限的非root用户执行，因为如果是root用户执行的，则实际cgi user会变成nobody，用非root用户，如alvin，则cgi的user就是alvin，可以拥有sudo权限。
@@ -38,8 +38,13 @@ Install sophiroth pxe
 
 这里我们是指定了端口为tcp 8001端口，日志文件是/tmp/8001.log
 
+shutdown
+`````````````````````
 
-开机自动启动
+kill `lsof -i:8001|awk '{print $2}'|tail -1`
+
+
+Startup on boot
 ````````````````
 
 .. code-block:: bash
