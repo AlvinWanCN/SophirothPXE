@@ -31,6 +31,7 @@ Install sophiroth pxe
 
  需要用拥有sudo权限的非root用户执行，因为如果是root用户执行的，则实际cgi user会变成nobody，用非root用户，如alvin，则cgi的user就是alvin，可以拥有sudo权限。
 
+.. code-block:: bash
 
     cd SophirothPXE
     nohup /usr/bin/python3 -m http.server --cgi 8001 & >/tmp/8001.log &
