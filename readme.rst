@@ -41,7 +41,9 @@ Startup
 shutdown
 `````````````````````
 
-kill `lsof -i:8001|awk '{print $2}'|tail -1`
+.. code-block:: bash
+
+    kill `lsof -i:8001|awk '{print $2}'|tail -1`
 
 
 Startup on boot
