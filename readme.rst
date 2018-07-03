@@ -20,11 +20,10 @@ Install python3
 Install sophiroth pxe
 ```````````````````````````
 
-.. code-block::bash
+.. code-block:: bash
 
     cd /opt/
     git clone https://github.com/AlvinWanCN/SophirothPXE.git
-
 
 
 启动服务的方式
