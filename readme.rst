@@ -23,7 +23,7 @@ Install sophiroth pxe
 .. code-block:: bash
 
     cd /opt/
-    git clone https://github.com/AlvinWanCN/SophirothPXE.git
+    git clone https://github.com/AlvinWanCN/sophiroth-pxe.git
 
 
 Startup
