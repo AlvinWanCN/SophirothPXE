@@ -51,6 +51,7 @@ Startup
     [Install]
     WantedBy=multi-user.target graphic.target
     ' > /usr/lib/systemd/system/sophiroth-pxe.service
+
     systemctl enable sophiroth-pxe
     systemctl start sopihroth-pxe
     systemctl status sophiroth-pxe
