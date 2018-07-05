@@ -53,7 +53,7 @@ Startup
     ' > /usr/lib/systemd/system/sophiroth-pxe.service
 
     systemctl enable sophiroth-pxe
-    systemctl start sopihroth-pxe
+    systemctl start sophiroth-pxe
     systemctl status sophiroth-pxe
     lsof -i:8001
 
