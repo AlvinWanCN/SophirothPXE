@@ -1,3 +1,4 @@
+#!/usr/bin/python
 #coding:utf-8
 import os,cgi,json,re
 print("Content-Type: application/json")
