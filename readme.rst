@@ -47,7 +47,6 @@ Startup
     Restart=on-failure
     RestartSec=3s
 
-
     [Install]
     WantedBy=multi-user.target graphic.target
     ' > /usr/lib/systemd/system/sophiroth-pxe.service
