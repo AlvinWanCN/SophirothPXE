@@ -33,23 +33,35 @@ Startup
 
 .. code-block:: bash
 
-    cd SophirothPXE
-    nohup /usr/bin/python3 -m http.server --cgi 8001 & >/tmp/8001.log &
+    echo '
+    [Unit]
+    Description=The Sophiroth Service
+    After=syslog.target network.target salt-master.service
 
-这里我们是指定了端口为tcp 8001端口，日志文件是/tmp/8001.log
+    [Service]
+    Type=simple
+    User=alvin
+    WorkingDirectory=/opt/sophiroth-pxe
+    ExecStart=/usr/bin/python3 -m http.server --cgi 8001
+    KillMode=process
+    Restart=on-failure
+    RestartSec=3s
+
+
+    [Install]
+    WantedBy=multi-user.target graphic.target
+    ' > /usr/lib/systemd/system/sophiroth-pxe.service
+    systemctl enable sophiroth-pxe
+    systemctl start sopihroth-pxe
+    systemctl status sophiroth-pxe
+    lsof -i:8001
+
+
+这里我们是指定了端口为tcp 8001端口
 
 shutdown
 `````````````````````
 
 .. code-block:: bash
 
-    kill `lsof -i:8001|awk '{print $2}'|tail -1`
-
-
-Startup on boot
-````````````````
-
-.. code-block:: bash
-
-    # cat /etc/rc.local
-    su alvin -c "curl -s https://raw.githubusercontent.com/AlvinWanCN/sophiroth-cluster/master/saltstack.alv.pub/scripts/startup_sophirothpxe.py|python"
+    systemctl stop sophiroth-pxe
