@@ -26,12 +26,19 @@ Install sophiroth pxe
     git clone https://github.com/AlvinWanCN/sophiroth-pxe.git
 
 
-Startup
+add user and grant sudo
 `````````````````````
 
- 需要用拥有sudo权限的非root用户执行，因为如果是root用户执行的，则实际cgi user会变成nobody，用非root用户，如alvin，则cgi的user就是alvin，可以拥有sudo权限。
+需要用拥有sudo权限的非root用户执行，因为如果是root用户执行的，则实际cgi user会变成nobody。
 
+所以这里我们创建sophiroth-pxe用户，并授予sudo权限。
 .. code-block:: bash
+
+useradd sophiroth-pxe -s /sbin/nologin
+echo "sophiroth-pxe ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/sophiroth-pxe
+
+add configuration file for start sophroth-pxe
+``````````````````````````````````````````````````````
 
     echo '
     [Unit]
@@ -50,6 +57,8 @@ Startup
     [Install]
     WantedBy=multi-user.target graphic.target
     ' > /usr/lib/systemd/system/sophiroth-pxe.service
+
+startup sophroth-pxe
 
     systemctl enable sophiroth-pxe
     systemctl start sophiroth-pxe

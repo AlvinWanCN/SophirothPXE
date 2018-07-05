@@ -3,4 +3,4 @@
 
 ## Directory introduction
 
-Store python scripts files.   
+Store pthon scripts files.
