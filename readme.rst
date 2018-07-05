@@ -40,6 +40,15 @@ echo "sophiroth-pxe ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/sophiroth-pxe
 add configuration file for start sophroth-pxe
 ``````````````````````````````````````````````````````
 
+根据python版本来写启动命令，下面分别是python2和3的启动命令。
+
+* /usr/bin/python2 -m CGIHTTPServer 8001
+* /usr/bin/python3 -m http.server --cgi 8001
+
+我们根据实际使用的python版本来决定在下面的启动配置文件里写哪一条，这里我们用的是python2的。
+
+.. code-block:: bash
+
     echo '
     [Unit]
     Description=The Sophiroth Service
@@ -49,7 +58,7 @@ add configuration file for start sophroth-pxe
     Type=simple
     User=alvin
     WorkingDirectory=/opt/sophiroth-pxe
-    ExecStart=/usr/bin/python3 -m http.server --cgi 8001
+    ExecStart=/usr/bin/python2 -m CGIHTTPServer 8001
     KillMode=process
     Restart=on-failure
     RestartSec=3s
@@ -59,6 +68,9 @@ add configuration file for start sophroth-pxe
     ' > /usr/lib/systemd/system/sophiroth-pxe.service
 
 startup sophroth-pxe
+```````````````````````````
+
+.. code-block:: bash
 
     systemctl enable sophiroth-pxe
     systemctl start sophiroth-pxe
