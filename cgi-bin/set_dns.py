@@ -16,6 +16,7 @@ if  password == 'a006971e8a57f1cff1a44de29a9314f5':
         subprocess.call("""sudo salt 'dns.alv.pub' cmd.run 'sed "/diana/d" /root/alv.pub.zone'""",shell=True)
         subprocess.call("""sudo salt 'dns.alv.pub' cmd.run 'echo %s A %s >> /root/alv.pub.zone'""",shell=True)
         subprocess.call("""sudo salt 'dns.alv.pub' cmd.run 'systemctl restart named'""",shell=True)
+        print(json.dump({'code': 0, 'message': 'success'}))
     else:
         print(json.dump({'code': 1, 'message': 'ip and hostname cannot null.'}))
 else:
