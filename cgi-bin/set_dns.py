@@ -13,7 +13,7 @@ try:
     hl.update(data.getvalue('password').encode(encoding='utf-8'))
     password=hl.hexdigest()
     dns_server='dns.alv.pub'
-    file='/root/alv.pub.zone'
+    file='/var/named/alv.pub.zone'
 except Exception as e:
     print(json.dumps({'code':2,'message':str(e)}))
 if  password == '20a2495a46e8d2aa6600dec33501326f':
